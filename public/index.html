@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#100b18" />
+  <meta name="description" content="Nadir Music AI — studio kreasi musik berbasis AI." />
+  <title>Nadir Music AI — Create Your Sound</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#create" aria-label="Nadir Music AI home">
+        <div class="brand-mark"><span>Ｎ</span><i></i></div>
+        <div><strong>NADIR <em>MUSIC AI</em></strong><small>YOUR PERSONAL MUSIC STUDIO</small></div>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav class="nav">
+        <button class="nav-link active" data-view="create"><span>✦</span> Buat Lagu</button>
+        <button class="nav-link" data-view="library"><span>▤</span> Library <b id="libraryCount">0</b></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="credit-card"><div class="credit-top"><span class="online-dot"></span><span>MODE PENGEMBANGAN</span></div><strong>Studio Pribadi</strong><small>Integrasi API siap dikonfigurasi</small></div>
+        <div class="profile"><div class="avatar">N</div><div><strong>Nadir</strong><small>Personal workspace</small></div><span class="more">•••</span></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar"><button class="mobile-menu" id="mobileMenu">☰</button><div class="crumb">WORKSPACE <span>›</span> <b id="crumbCurrent">KOMPOSER</b></div><div class="top-actions"><span class="status-pill"><i></i> Studio siap</span><div class="avatar small">N</div></div></header>
+
+      <section class="view active" id="createView">
+        <div class="page-heading"><div><div class="eyebrow">AI MUSIC GENERATOR</div><h1>Buat Lagu <span>baru.</span></h1><p>Ubah ide, cerita, dan perasaan menjadi musik.</p></div><div class="heading-orb">♫</div></div>
+        <form id="musicForm">
+          <div class="panel mode-panel"><div class="section-label">MODE KREASI</div><div class="segmented two"><button type="button" class="segment selected" data-mode="create">✦ &nbsp; Buat Baru</button><button type="button" class="segment" data-mode="cover">↗ &nbsp; Unggah Cover</button></div><div class="cover-note" id="coverNote">Mode cover akan membutuhkan upload audio dan dukungan khusus dari provider API.</div></div>
+
+          <div class="form-grid">
+            <div class="panel form-panel">
+              <div class="panel-title"><div><span class="step">01</span><h2>Pengaturan lagu</h2></div><span class="optional">PENGATURAN DASAR</span></div>
+              <div class="field"><label>JENIS KARYA</label><div class="segmented two compact"><button type="button" class="segment" data-kind="instrumental">♫ &nbsp; Instrumental</button><button type="button" class="segment selected" data-kind="vocal">♬ &nbsp; Vokal</button></div></div>
+              <div class="field"><label>GENDER VOKAL</label><div class="gender-row"><button type="button" class="choice selected" data-gender="Pria">♂ <span>Pria</span></button><button type="button" class="choice" data-gender="Wanita">♀ <span>Wanita</span></button></div></div>
+              <div class="field"><label for="genre">GENRE MUSIK</label><select id="genre"><option>Modern Dominican Bachata</option><option>Pop Indonesia</option><option>Acoustic Pop</option><option>Deep House</option><option>Reggae</option><option>Jazz</option><option>Rock</option><option>R&B / Soul</option><option>Lo-fi</option><option>Custom</option></select></div>
+              <div class="field"><label for="title">JUDUL LAGU</label><input id="title" maxlength="100" placeholder="Contoh: Qq — Cinta yang Terluka" required /></div>
+              <div class="field"><label for="lyrics">LIRIK <span class="muted-label">(OPSIONAL UNTUK INSTRUMENTAL)</span></label><textarea id="lyrics" rows="8" maxlength="5000" placeholder="[Verse 1]\nTuliskan kisah yang ingin kamu ceritakan...\n\n[Chorus]\nBagian reff lagu kamu..."></textarea><div class="field-foot"><span>Gunakan penanda [Verse], [Chorus], [Bridge]</span><span id="lyricCount">0 / 5000</span></div></div>
+            </div>
+            <div class="panel form-panel prompt-panel">
+              <div class="panel-title"><div><span class="step">02</span><h2>Karakter musik</h2></div><span class="optional">ARAHAN AI</span></div>
+              <div class="field"><label for="prompt">MUSIC PROMPT</label><textarea id="prompt" class="prompt-input" rows="7" maxlength="2000" placeholder="Jelaskan karakter musik yang kamu inginkan. Contoh: suara pria serak dan emosional, aransemen minimal, gitar lembut, fokus utama pada vokal..."></textarea><div class="field-foot"><span>Deskripsikan mood, instrumen, tempo, dan karakter vokal.</span><span id="promptCount">0 / 2000</span></div></div>
+              <div class="prompt-tips"><div class="tip-icon">✧</div><div><strong>Tips hasil lebih terarah</strong><p>Jelaskan karakter suara, intensitas emosi, instrumen utama, dan suasana lagu secara spesifik.</p></div></div>
+              <div class="field"><label for="duration">DURASI TARGET</label><select id="duration"><option value="Auto">Otomatis oleh AI</option><option value="Short song">Pendek</option><option value="Full song">Lagu penuh</option></select></div>
+              <div class="api-note"><span>i</span><div><strong>AI Engine</strong><small>Provider API akan dihubungkan melalui backend yang aman. API key tidak ditampilkan di browser.</small></div></div>
+            </div>
+          </div>
+          <div class="generate-row"><div class="generate-info"><span class="sparkle">✦</span><div><strong>Siap menciptakan sesuatu?</strong><small>Periksa judul dan prompt sebelum memulai.</small></div></div><button class="generate-btn" id="generateBtn" type="submit"><span>✦</span> GENERATE MUSIC <b>→</b></button></div>
+          <div class="notice" id="notice" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <section class="view" id="libraryView"><div class="page-heading"><div><div class="eyebrow">YOUR COLLECTION</div><h1>Music <span>Library.</span></h1><p>Karya yang tersimpan di perangkat ini.</p></div><div class="heading-orb">▤</div></div><div class="panel library-panel"><div class="library-head"><div><h2>Koleksi lagu</h2><p id="librarySubtitle">Belum ada lagu tersimpan.</p></div><button class="outline-btn" id="backToCreate">+ Buat lagu</button></div><div id="libraryItems" class="library-items"><div class="empty-state"><div>♫</div><strong>Library masih kosong</strong><p>Lagu yang berhasil dibuat dan audio yang kamu tambahkan akan muncul di sini.</p></div></div></div></section>
+
+      <footer class="footer"><span>© 2026 NADIR MUSIC AI</span><span>CREATE WITH FEELING <b>✦</b></span></footer>
+    </main>
+  </div>
+
+  <div class="player-bar" id="playerBar"><div class="player-art">♫</div><div class="player-track"><strong id="playerTitle">Belum ada lagu diputar</strong><small id="playerSubtitle">Pilih audio dari Library</small></div><audio id="audioPlayer" controls></audio><button id="closePlayer" class="close-player" aria-label="Tutup pemutar">×</button></div>
+  <script src="/app.js"></script>
+</body>
+</html>
